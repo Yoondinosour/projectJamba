@@ -4,11 +4,19 @@
     <img src="src/assets/main_m.jpg" alt="메인이미지 모바일" class="mob">
     <div></div>
   </div>
+
+  <MenuView></MenuView>
+
 </template>
-<script>
-export default {
-  
-}
+<script setup>
+import MenuView from '../components/section/MenuView.vue';
+
+// const props = defineProps({
+// 	propsItem: {
+
+// 	} 
+// })
+
 </script>
 <style lang="scss" scoped>
 .visual {

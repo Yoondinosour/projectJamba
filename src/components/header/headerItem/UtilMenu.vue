@@ -24,7 +24,7 @@
     font-weight: 600;
     display: inline-block;
     background-repeat: no-repeat;
-    background-position: top 0px left;
+    background-position: top 2px left;
   }
 }
 </style>

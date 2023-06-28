@@ -4,7 +4,7 @@
       <li v-for="(menu, index) of navmenu" :key="index" @mouseover="hoverMenus('over', index)" @mouseleave="hoverMenus('leave', index)">
         <a :href="menu.href" class="menu">{{ menu.title }}</a>
         <div class="depth-bg" :class="{ hovers: hoverHeight, active: menu.active }">
-          <div class="depth-inner" :class="{ active: menu.active }">
+          <div v-if="menu.active == true" class="depth-inner" :class="{ active: menu.active }">
             <ul class="d-flex flex-wrap">
               <li v-for="submenu of menu.submenu" :key="submenu.subtitle">
                 <a :href="submenu.href">{{ submenu.subtitle }}</a>
@@ -132,6 +132,9 @@ function hoverMenus(state, index) {
     &:hover {
       color: #116f57;
     }
+    &:hover > .depth-bg {
+      visibility: visible;
+    }
     &::after {
       content: '';
       position: absolute;
@@ -156,14 +159,20 @@ function hoverMenus(state, index) {
   z-index: 10;
   left: 0;
   overflow: hidden;
-  // visibility: hidden;
-  transition: all 0.5s ease-in-out;
+  visibility: hidden;
+  // transition: all 0.5s ease-in-out;
   &.active {
-    height: 332px;
+    visibility: visible;
+    transition: height 0.5s ease-in-out;
   }
   &.hovers {
     height: 332px;
-    transition: all 0.5s ease-in-out;
+  }
+  
+  &.transition {
+    height: 322px;
+    overflow: hidden;
+    transition: height .4s ease-in-out;
   }
 }
 .depth-inner {
@@ -172,7 +181,7 @@ function hoverMenus(state, index) {
   height: 100%;
   padding: 20px 30px;
   position: relative;
-
+  z-index: 11;
   ul {
     width: 500px;
     li {
