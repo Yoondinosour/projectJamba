@@ -4,6 +4,15 @@
 .flex-1 {
   flex: 1;
 }
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+.flex-direction-column {
+  flex-direction: column;
+}
 
 .justify-center {
   justify-content: center;

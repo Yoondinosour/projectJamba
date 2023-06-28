@@ -3,24 +3,13 @@ import { onMounted, ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import Header from './components/header/Header.vue'
 
-const scrollDirection = ref(0);
-const waiting = ref(false);
-const scrollTrace = ref(0);
+const scrollDirection = ref(false);
 
-function scrollHandler(e) {
-  if(!waiting.value) {
-    waiting.value = true;
-
+function scrollHandler() {
     const currentScroll = window.scrollY;
 
-    if(currentScroll > scrollTrace.value) scrollDirection.value = -1;
-    else if (currentScroll < scrollTrace.value) scrollDirection.value = 1;
-    scrollTrace.value = currentScroll;
-
-    setTimeout(() => {
-      waiting.value = false;
-    }, 100)
-  }
+    if(currentScroll > 10) scrollDirection.value = true;
+    else if (currentScroll < 10) scrollDirection.value = false;
 }
 
 onMounted(() => {

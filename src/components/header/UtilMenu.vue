@@ -1,6 +1,6 @@
 <template>
   <div class="utilmenu">
-    <a v-for="util of utilmenu" :key="util.icon" :href="util.href" :style="{ 'background-image': util.icon }">{{ util.title }}</a>
+    <a v-for="util of utilmenu" :key="util.icon" :href="util.href" :style="{ 'background-image': util.icon }" target="_blank">{{ util.title }}</a>
   </div>
 </template>
 <script setup>
@@ -21,9 +21,10 @@
     margin-left: 28px;
     font-size: 16px;
     color: #555;
+    font-weight: 600;
     display: inline-block;
     background-repeat: no-repeat;
-    background-position: top 3px left;
+    background-position: top 0px left;
   }
 }
 </style>

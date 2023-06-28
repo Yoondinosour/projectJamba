@@ -24,11 +24,11 @@ export default {
     NavMenu
   },
   props: {
-    scrollDirection: Number
+    scrollDirection: Boolean
   },
   setup(props) {
     const headerShownClass=computed(() => {
-      if(props.scrollDirection == -1) return 'sticky';
+      if(props.scrollDirection) return 'sticky';
       return '';
     })
     return {
