@@ -3,20 +3,22 @@
     <ul class="gnb d-flex" :class="{active: hoverHeight}" @mouseover="menuHeight('over')" @mouseleave="menuHeight('leave')">
       <li v-for="(menu, index) of navmenu" :key="index" @mouseover="hoverMenus('over', index)" @mouseleave="hoverMenus('leave', index)">
         <a :href="menu.href" class="menu">{{ menu.title }}</a>
-        <div class="depth-bg" :class="{ active: menu.active }">
-          <div  class="depth-inner" >
-            <ul class="d-flex flex-wrap">
-              <li v-for="submenu of menu.submenu" :key="submenu.subtitle">
-                <a :href="submenu.href">{{ submenu.subtitle }}</a>
-              </li>
-            </ul>
-            <p class="d-flex flex-direction-column">
-              <img src="src/assets/gnbTxtImg.png" alt="gnb텍스트이미지">
-              <span>모바일로 쉽고 빠르게<br />주문해 보세요</span>
-              <a href="/menu/fasteasy">Order Now</a>
-            </p>
+        <Transition>
+          <div v-if="menu.active" class="depth-bg" :class="{ active: menu.active }">
+            <div  class="depth-inner" >
+              <ul class="d-flex flex-wrap">
+                <li v-for="submenu of menu.submenu" :key="submenu.subtitle">
+                  <a :href="submenu.href">{{ submenu.subtitle }}</a>
+                </li>
+              </ul>
+              <p class="d-flex flex-direction-column">
+                <img src="src/assets/gnbTxtImg.png" alt="gnb텍스트이미지">
+                <span>모바일로 쉽고 빠르게<br />주문해 보세요</span>
+                <a href="/menu/fasteasy">Order Now</a>
+              </p>
+            </div>
           </div>
-        </div>
+        </Transition>
       </li>
     </ul>
   </div>
@@ -93,8 +95,6 @@ const navmenu = ref([
 const hoverHeight = ref(false)
 
 function menuHeight(state) {
-  const hoverGNB = document.querySelector('ul')
-  const activeNav = document.querySelectorAll('.depth-bg.active')
   if(state == 'over') {
     hoverHeight.value = true
     
@@ -118,9 +118,6 @@ function hoverMenus(state, index) {
   width: 100%;
   .gnb {
     float: right;
-    &.active .depth-bg{
-      height: 332px;
-    }
   }
   li:hover a::after {
     width: 58px;
@@ -151,20 +148,16 @@ function hoverMenus(state, index) {
   }
 }
 .depth-bg {
-  display: none;
+  // display: none;
   background: url(src/assets/subBg.png) center 0 no-repeat;
-  height: 0;
+  height: 332px;
+  overflow: hidden;
   width: 100%;
   position: fixed;
   z-index: 10;
   left: 0;
-  overflow: hidden;
-  transition: height 0.5s ease-in-out;
   &.active {
-    display: block;
-    height: 332px;
-    // z-index: 11;
-    transition: height 0.5s ease-in-out;
+    // display: block;
   }
 }
 .depth-inner {
@@ -197,5 +190,22 @@ function hoverMenus(state, index) {
     position: absolute;
     text-align: right;
   }
+}
+.v-enter-active,
+.v-leave-active {
+  transition: height 0.5s ease;
+}
+
+.v-enter-from {
+  height: 0px;
+}
+.v-enter-to {
+  height: 332px;
+}
+.v-leave-from {
+  height: 332px;
+}
+.v-leave-to {
+  height: 0px;
 }
 </style>

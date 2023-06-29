@@ -1,6 +1,6 @@
 <template>
   <div class="nav">
-    <ul class="gnb d-flex" :class="{active: hoverHeight}" @mouseover="menuHeight('over')" @mouseleave="menuHeight('leave')">
+    <ul class="gnb d-flex" @mouseover="menuHeight('over')" @mouseleave="menuHeight('leave')">
       <li v-for="(menu, index) of navmenu" :key="index" @mouseover="hoverMenus('over', index)" @mouseleave="hoverMenus('leave', index)">
         <a :href="menu.href" class="menu">{{ menu.title }}</a>
         <div class="depth-bg" :class="{ active: menu.active }">
@@ -93,13 +93,24 @@ const navmenu = ref([
 const hoverHeight = ref(false)
 
 function menuHeight(state) {
-  const hoverGNB = document.querySelector('ul')
-  const activeNav = document.querySelectorAll('.depth-bg.active')
+  const navs = document.querySelectorAll('.depth-bg')
+  const activeNav = document.querySelector('.depth-bg.active')
   if(state == 'over') {
     hoverHeight.value = true
-    
+
+    for(let nav of navs) {
+      nav.style.height = '322px'
+      nav.style.display = 'none'
+    }
+    activeNav.style.display = 'block'
+    activeNav.style.height = '322px'
   } else {
     hoverHeight.value = false
+
+    for(let nav of navs) {
+      nav.style.display = 'block'
+      nav.style.height = '0'
+    }
   }
 }
 
@@ -118,9 +129,6 @@ function hoverMenus(state, index) {
   width: 100%;
   .gnb {
     float: right;
-    &.active .depth-bg{
-      height: 332px;
-    }
   }
   li:hover a::after {
     width: 58px;
@@ -151,7 +159,6 @@ function hoverMenus(state, index) {
   }
 }
 .depth-bg {
-  display: none;
   background: url(src/assets/subBg.png) center 0 no-repeat;
   height: 0;
   width: 100%;
@@ -159,12 +166,10 @@ function hoverMenus(state, index) {
   z-index: 10;
   left: 0;
   overflow: hidden;
-  transition: height 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   &.active {
-    display: block;
     height: 332px;
-    // z-index: 11;
-    transition: height 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
   }
 }
 .depth-inner {

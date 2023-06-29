@@ -1,9 +1,9 @@
 <template>
   <div class="nav">
-    <ul class="gnb d-flex" :class="{active: hoverHeight}" @mouseover="menuHeight('over')" @mouseleave="menuHeight('leave')">
-      <li v-for="(menu, index) of navmenu" :key="index" @mouseover="hoverMenus('over', index)" @mouseleave="hoverMenus('leave', index)">
-        <a :href="menu.href" class="menu">{{ menu.title }}</a>
-        <div class="depth-bg" :class="{ active: menu.active }">
+    <ul id="gnb" class="d-flex" @mouseleave="handlerMouseoLeave">
+      <li v-for="(menu, index) of navmenu" :key="index">
+        <a :href="menu.href" class="menu" @mouseover="handlerMouseoOver">{{ menu.title }}</a>
+        <div class="depth-bg">
           <div  class="depth-inner" >
             <ul class="d-flex flex-wrap">
               <li v-for="submenu of menu.submenu" :key="submenu.subtitle">
@@ -23,7 +23,6 @@
 </template>
 <script setup>
 import { ref } from "vue"
-
 
 const navmenu = ref([
   { 
@@ -90,37 +89,71 @@ const navmenu = ref([
     ]
   }
 ])
-const hoverHeight = ref(false)
 
-function menuHeight(state) {
-  const hoverGNB = document.querySelector('ul')
-  const activeNav = document.querySelectorAll('.depth-bg.active')
-  if(state == 'over') {
-    hoverHeight.value = true
-    
-  } else {
-    hoverHeight.value = false
-  }
-}
+// $('.gnb>li>a').on('mouseover focus',function(){
+//   if($('.gnb').hasClass('active')){
+//     $('.gnb .sub').hide();
+//     $(this).next().show();
+//   }else{
+//     $(this).next().stop().slideDown();
+//   }
+//   $('.gnb').addClass('active');
+// });
+// $('.gnb').on('mouseleave focusout',function(){
+//   $(this).removeClass('active');
+//   $('.gnb .sub').stop().slideUp();
+// });
 
-function hoverMenus(state, index) {
-  if(state == 'over') {
-    navmenu.value[index].active = true
+
+function handlerMouseoOver(ev) {
+  const gnb = document.getElementById('gnb')
+  // 모든 depth-bg
+  const subMenus = document.getElementsByClassName('depth-bg')
+  // 현재 MouseOver된 depth-bg
+  const next = ev.srcElement.nextElementSibling
+
+  // gnb에 active가 있으면
+  if(gnb.classList.contains('active')) {
+    // 모든 depth-bg에 display none
+    for(let sub of subMenus) {
+      sub.style.display = 'none'
+    }
   }
   else {
-    navmenu.value[index].active = false
+    next.animate([
+      {height: '0px', transition: 'all ease-in-out 0.5s'},
+      {height: '332px', transition: 'all ease-in-out 0.5s'}
+    ], 500)
   }
+    // 현재 MouseOver된 depth-bg만 display block
+  next.style.display = 'block'
+  // next.classList.add('active')
+  next.style.height = '332px'
+  gnb.classList.add('active')
 }
 
+function handlerMouseoLeave(ev) {
+  const gnb = document.getElementById('gnb')
+  const subMenus = document.getElementsByClassName('depth-bg')
+
+  gnb.classList.remove('active')
+  for(let sub of subMenus) {
+    sub.style.height = '0'
+    sub.style.transition = 'all ease-in-out 0.5s'
+  }
+
+  setTimeout(function () {
+    for(let sub of subMenus) {
+      sub.style.display = null
+    }
+  }, 500)  
+}
 </script>
 <style lang="scss" scoped>
 .nav {
   width: 100%;
-  .gnb {
+  #gnb {
     float: right;
-    &.active .depth-bg{
-      height: 332px;
-    }
   }
   li:hover a::after {
     width: 58px;
@@ -151,21 +184,15 @@ function hoverMenus(state, index) {
   }
 }
 .depth-bg {
-  display: none;
+  // display: none;
   background: url(src/assets/subBg.png) center 0 no-repeat;
   height: 0;
+  overflow: hidden;
   width: 100%;
   position: fixed;
   z-index: 10;
   left: 0;
-  overflow: hidden;
-  transition: height 0.5s ease-in-out;
-  &.active {
-    display: block;
-    height: 332px;
-    // z-index: 11;
-    transition: height 0.5s ease-in-out;
-  }
+  transition: all ease-in-out 0.5s;
 }
 .depth-inner {
   max-width: 1280px;
@@ -197,5 +224,22 @@ function hoverMenus(state, index) {
     position: absolute;
     text-align: right;
   }
+}
+.v-enter-active,
+.v-leave-active {
+  transition: height 0.5s ease;
+}
+
+.v-enter-from {
+  height: 0px;
+}
+.v-enter-to {
+  height: 332px;
+}
+.v-leave-from {
+  height: 332px;
+}
+.v-leave-to {
+  height: 0px;
 }
 </style>

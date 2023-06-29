@@ -7,7 +7,9 @@
 
       <UtilMenu></UtilMenu>
 
-      <NavMenu></NavMenu>
+      <NavMenuJS></NavMenuJS>
+      <!-- <NavMenu></NavMenu> -->
+      <!-- <NavMenuT></NavMenuT> -->
       <!-- <NavMenu1> </NavMenu1> -->
       <!-- <NavMenu2> </NavMenu2> -->
       
@@ -18,6 +20,9 @@
 <script>
 import UtilMenu from './headerItem/UtilMenu.vue'
 import NavMenu from './headerItem/NavMenu.vue'
+import NavMenuJS from './headerItem/NavMenuJS.vue'
+// import NavMenuJS from './headerItem/NavMenu0.vue'
+import NavMenuT from './headerItem/NavMenuT.vue'
 import NavMenu1 from './headerItem/NavMenu1.vue'
 import NavMenu2 from './headerItem/NavMenu2.vue'
 import { computed } from 'vue'
@@ -27,7 +32,9 @@ export default {
     UtilMenu,
     NavMenu,
     NavMenu1,
-    NavMenu2
+    NavMenu2,
+    NavMenuT,
+    NavMenuJS
   },
   props: {
     scrollDirection: Boolean
