@@ -4,12 +4,13 @@
     <img src="src/assets/main_m.jpg" alt="메인이미지 모바일" class="mob">
     <div></div>
   </div>
-
+  <SelectCom></SelectCom>
   <MenuView></MenuView>
 
 </template>
 <script setup>
 import MenuView from '../components/section/MenuView.vue';
+import SelectCom from '../components/SelectCom.vue';
 
 // const props = defineProps({
 // 	propsItem: {
