@@ -1,10 +1,17 @@
 @import './flex.scss';
 @import './nav.scss';
 @import './section.scss';
+@import './animation.scss';
 
 
 ul, li {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
 }

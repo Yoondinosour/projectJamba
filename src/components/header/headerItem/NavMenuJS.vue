@@ -27,7 +27,7 @@ import { ref } from "vue"
 
 const navmenu = ref([
   { 
-    title: 'about', href: '/about', active: false, submenu:
+    title: 'login', href: '/about', active: false, submenu:
     [
       { subtitle: '잠바 스토리', href: '/about/story' },
       { subtitle: '홍보동영상', href: '/about/movie'}

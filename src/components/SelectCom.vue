@@ -1,121 +1,109 @@
 <template>
-  <div class="container">
-    <span class="choose">Choose Gender</span>
-  
-      <div class="dropdown" @click="doDropdown">
-        <div class="select">
-          <span>Select Gender</span>
-          <i class="fa fa-chevron-left"></i>
-        </div>
-        <input type="hidden" name="gender">
-        <ul class="dropdown-menu">
-          <li id="male">Male</li>
-          <li id="female">Female</li>
-        </ul>
+  <div class="select-container">
+    <label>
+      <slot></slot>
+    </label>
+
+    <div class="select" @click="activeDropDown" :class="{active: actived}">
+      <div class="selected">
+        <span>{{ selectValue }}</span>
       </div>
-  
-    <span class="msg"></span>
+      <ul class="dropdown-menu">
+        <li v-for="item of selectItems" :key="item.value" class="option" @click="$emit('selectItem', item)">{{ item.label }}</li>
+      </ul>
+    </div>
+
   </div>
 </template>
 <script setup>
-const dropdwonbtn = document.querySelector('./dropdown')
+import { ref } from "vue";
 
-function doDropdown () {
-  dropdwonbtn.attributes('tabindex', 1).focus();
+const props = defineProps({
+	selectItems: {
+    type: Array,
+    default: []
+  }
+})
+
+const selectValue = ref('선택해주세요');
+const actived = ref(false);
+
+//드롭다운 메뉴 실행
+function activeDropDown(event) {
+  const targetElement = event.target
+  const isOptionElement = targetElement.classList.contains("option");
+
+  if(isOptionElement) {
+    selectOption(targetElement);
+  }
+
+  actived.value = !actived.value
 }
+
+//선택한 옵션의 value를 보여주기
+function selectOption(targetElement) {
+  selectValue.value = targetElement.textContent
+}
+
+//다른 곳 클릭 시 드롭다운메뉴 사라지기
+document.addEventListener("click", function(event) {
+  const targetElement = event.target;
+  const isSelect = targetElement.classList.contains('select') || targetElement.closest('.select');
+
+  if(isSelect) {
+    return;
+  }
+
+  actived.value = false
+})
+
 
 </script>
 
-
 <style lang="scss" scoped>
-  * {
-  outline: 0;
-  font-family: sans-serif
-}
-body {
-  background-color: #fafafa
-}
-span.msg,
-span.choose {
-  color: #555;
-  padding: 5px 0 10px;
-  display: inherit
-}
-.container {
+.select-container {
   width: 500px;
-  margin: 50px auto 0;
-  text-align: center
+  margin: 0 auto;
+  text-align: center;
 }
-
-/*Styling Selectbox*/
-.dropdown {
-  width: 300px;
-  display: inline-block;
-  background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 0 2px rgb(204, 204, 204);
-  transition: all .5s ease;
+.select {
+  background: #FFF;
+  border-radius: 4px;
+  box-shadow: 0 0 2px rgb(204,204,204);
+  transition: height .5s ease-in-out;
   position: relative;
-  font-size: 14px;
-  color: #474747;
   height: 100%;
-  text-align: left
 }
-.dropdown .select {
+.selected {
+  display: block;
+  cursor: pointer;
+  &.active {
+    background: #f8f8f8;
+  }
+}
+.select .dropdown-menu {
+  height: 0;
+  overflow: hidden;
+  transition: height .5s ease-in-out;
+  border: none;
+  width: 500px;
+  position: absolute;
+  z-index: 2;
+  background: #FFF;
+  margin-top: 1px;
+  li:hover {
+    background: #efefef;
     cursor: pointer;
-    display: block;
-    padding: 10px
+  }
 }
-.dropdown .select > i {
-    font-size: 13px;
-    color: #888;
-    cursor: pointer;
-    transition: all .3s ease-in-out;
-    float: right;
-    line-height: 20px
-}
-.dropdown:hover {
-    box-shadow: 0 0 4px rgb(204, 204, 204)
-}
-.dropdown:active {
-    background-color: #f8f8f8
-}
-.dropdown.active:hover,
-.dropdown.active {
-    box-shadow: 0 0 4px rgb(204, 204, 204);
-    border-radius: 2px 2px 0 0;
-    background-color: #f8f8f8
-}
-.dropdown.active .select > i {
-    transform: rotate(-90deg)
-}
-.dropdown .dropdown-menu {
-    position: absolute;
-    background-color: #fff;
-    width: 100%;
-    left: 0;
+.select.active .dropdown-menu {
+    border: 1px solid #efefef;
+    height: 100px;
+    z-index: 1;
+    transition: height .5s ease-in-out;
+    overflow: scroll;
+    border-radius: 0 0 5px 5px;
     margin-top: 1px;
-    box-shadow: 0 1px 2px rgb(204, 204, 204);
-    border-radius: 0 1px 2px 2px;
-    overflow: hidden;
-    display: none;
-    max-height: 144px;
-    overflow-y: auto;
-    z-index: 9
-}
-.dropdown .dropdown-menu li {
-    padding: 10px;
-    transition: all .2s ease-in-out;
-    cursor: pointer
-} 
-.dropdown .dropdown-menu {
-    padding: 0;
-    list-style: none
-}
-.dropdown .dropdown-menu li:hover {
-    background-color: #f2f2f2
-}
-.dropdown .dropdown-menu li:active {
-    background-color: #e2e2e2
-}
+    border-top: none;
+  }
 </style>
