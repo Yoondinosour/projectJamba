@@ -1,12 +1,10 @@
 <template>
   <div>
-    <SubNav></SubNav>
-    
+    juice
   </div>
 </template>
 
 <script setup>
-import SubNav from '../components/subnav/SubNav.vue'
 </script>
 
 <style lang="scss" scoped>

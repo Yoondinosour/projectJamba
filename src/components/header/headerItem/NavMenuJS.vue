@@ -11,7 +11,7 @@
               </li>
             </ul>
             <p class="d-flex flex-direction-column">
-              <img src="src/assets/gnbTxtImg.png" alt="gnb텍스트이미지">
+              <img src="@/assets/gnbTxtImg.png" alt="gnb텍스트이미지">
               <span>모바일로 쉽고 빠르게<br />주문해 보세요</span>
               <a href="/menu/fasteasy">Order Now</a>
             </p>
@@ -150,7 +150,7 @@ function hoverMenus(state, index) {
       left: 24px;
       width: 0;
       height: 12px;
-      background: url(src/assets/menuHover.png);
+      background: url(@/assets/menuHover.png);
       transition: .4s;
     }
   }
@@ -159,7 +159,7 @@ function hoverMenus(state, index) {
   }
 }
 .depth-bg {
-  background: url(src/assets/subBg.png) center 0 no-repeat;
+  background: url(@/assets/subBg.png) center 0 no-repeat;
   height: 0;
   width: 100%;
   position: fixed;
@@ -194,7 +194,7 @@ function hoverMenus(state, index) {
     }
   }
   p {
-    background: url(src/assets/gnbImg.png) 0 0 no-repeat;
+    background: url(@/assets/gnbImg.png) 0 0 no-repeat;
     height: 210px;
     padding-left: 320px;
     top: 40px;

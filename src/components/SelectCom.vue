@@ -99,9 +99,10 @@ document.addEventListener("click", function(event) {
 .select.active .dropdown-menu {
     border: 1px solid #efefef;
     height: 100px;
+    max-height: fit-content;
     z-index: 1;
     transition: height .5s ease-in-out;
-    overflow: scroll;
+    overflow-y: auto;
     border-radius: 0 0 5px 5px;
     margin-top: 1px;
     border-top: none;

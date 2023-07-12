@@ -2,7 +2,7 @@
   <header :class="headerShownClass">
     <div class="container">
       <div class="logo">
-        <a href="/"><img src="src/assets/logo.png" alt="잠바주스 로고"></a>
+        <a href="/"><img src="@/assets/logo.png" alt="잠바주스 로고"></a>
       </div>
 
       <UtilMenu></UtilMenu>
