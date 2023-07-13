@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <section class="menu-section">
     EnergyBowl
-  </div>
+  </section>
 </template>
 
 <script setup>

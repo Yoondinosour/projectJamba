@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <section class="menu-section">
     Coffee
-  </div>
+  </section>
 </template>
 
 <script setup>

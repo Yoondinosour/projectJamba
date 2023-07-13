@@ -25,7 +25,7 @@ const router = createRouter({
         {
           path: '/menu/smoothie',
           name: 'smoothie',
-          component: () => import("@/views/menu/SmootheiView.vue")
+          component: () => import("@/views/menu/SmoothieView.vue")
         },
         {
           path: '/menu/juice',

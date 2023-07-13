@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <section class="menu-section">
     juice
-  </div>
+  </section>
 </template>
 
 <script setup>

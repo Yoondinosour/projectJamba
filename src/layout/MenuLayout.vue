@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="nav-container d-flex justify-center">
     <MenuNav />
     <router-view />
   </div>
@@ -10,8 +10,4 @@ import MenuNav from "../components/MenuNav.vue";
 </script>
 
 <style lang="scss" scoped>
-.container {
-  max-width: 1280px;
-
-}
 </style>

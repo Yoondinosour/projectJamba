@@ -36,7 +36,7 @@ const navmenu = ref([
   {
     title: 'menu', href: '/menu', active: false, submenu:
     [
-      { subtitle: '스무디', href: '/menu/smooth' },
+      { subtitle: '스무디', href: '/menu/smoothie' },
       { subtitle: '에너지볼', href: '/menu/energybowl' },
       { subtitle: 'RTD주스', href: '/menu/rtd' },
       { subtitle: '주스', href:'/menu/juice' },
