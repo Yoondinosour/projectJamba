@@ -13,34 +13,22 @@
   </header>
 </template>
 
-<script>
+<script setup>
 import UtilMenu from './headerItem/UtilMenu.vue'
 import NavMenuJS from './headerItem/NavMenuJS.vue'
 import { computed } from 'vue'
 
-export default {
-  components: {
-    UtilMenu,
-    NavMenuJS
-  },
-  props: {
-    scrollDirection: Boolean
-  },
-  setup(props) {
-    const headerShownClass=computed(() => {
-      if(props.scrollDirection) return 'sticky';
-      return '';
-    })
-    return {
-      headerShownClass
-    }
+const props = defineProps({
+	scrollDirection: {
+    type: Boolean,
+    default: false
   }
+})
 
-  // 스크롤이벤트 컴포넌트간 연결하는 방법
-  // https://velog.io/@dmstmdrbs/Vue3-scroll-%EC%9D%B4%EB%B2%A4%ED%8A%B8%EC%97%90-%EB%94%B0%EB%A5%B8-%ED%97%A4%EB%8D%94-%ED%91%9C%EC%8B%9C-with-Throttle
-  
-
-}
+const headerShownClass = computed(() => {
+  if(props.scrollDirection) return 'sticky';
+  return '';
+})
 </script>
 
 <style lang="scss" scoped>

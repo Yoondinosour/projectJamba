@@ -5,7 +5,7 @@
     </div>
 
     <div class="content-wrap d-flex flex-direction-column">
-      <a v-for="menu of menus" :key="menu.subtitle" :href="menu.href">{{ menu.subtitle }}</a>
+      <a v-for="menu of menus" :key="menu.subtitle" @click="$emit('changeComp', menu.name)" href="#">{{ menu.subtitle }}</a>
     </div>
   </div>
 </template>
@@ -13,12 +13,12 @@
 import { reactive, ref } from "vue";
 
 const menus = reactive([
-    { subtitle: '스무디', href: '/menu/smoothie' },
-    { subtitle: '에너지볼', href: '/menu/energybowl' },
-    { subtitle: 'RTD주스', href: '/menu/rtd' },
-    { subtitle: '주스', href:'/menu/juice' },
-    { subtitle: '커피&차', href: '/menu/coffee' },
-    { subtitle: '베이커리', href: '/menu/bakery' }
+    { subtitle: '스무디', name: 'Smoothie', href: '/menu/smoothie' },
+    { subtitle: '에너지볼', name: 'Energybowl', href: '/menu/energybowl' },
+    { subtitle: 'RTD주스', name: 'Rtd', href: '/menu/rtd' },
+    { subtitle: '주스', name: 'Juice', href:'/menu/juice' },
+    { subtitle: '커피&차', name: 'Coffee', href: '/menu/coffee' },
+    { subtitle: '베이커리', name: 'Bakery', href: '/menu/bakery' }
   ])
 </script>
 <style lang="scss" scoped>

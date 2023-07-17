@@ -1,6 +1,12 @@
+<template>
+  <Header :scrollDirection="scrollDirection" />
+
+  <RouterView />
+
+</template>
+
 <script setup>
 import { onMounted, ref } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
 import Header from './components/header/Header.vue'
 
 const scrollDirection = ref(false);
@@ -17,13 +23,6 @@ onMounted(() => {
 })
 
 </script>
-
-<template>
-  <Header :scrollDirection="scrollDirection" />
-
-  <RouterView />
-
-</template>
 
 <style lang="scss" scoped>
 

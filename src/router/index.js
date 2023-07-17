@@ -20,39 +20,39 @@ const router = createRouter({
       path: '/menu',
       name: 'menu',
       component: () => import("@/layout/MenuLayout.vue"),
-      redirect: '/menu/smoothie',
-      children: [
-        {
-          path: '/menu/smoothie',
-          name: 'smoothie',
-          component: () => import("@/views/menu/SmoothieView.vue")
-        },
-        {
-          path: '/menu/juice',
-          name: 'juice',
-          component: () => import("@/views/menu/JuiceView.vue")
-        },
-        {
-          path: '/menu/energybowl',
-          name: 'energybowl',
-          component: () => import("@/views/menu/EnergyBowl.vue")
-        },
-        {
-          path: '/menu/coffee',
-          name: 'coffee',
-          component: () => import("@/views/menu/CoffeeView.vue")
-        },
-        {
-          path: '/menu/RTD',
-          name: 'RTD',
-          component: () => import("@/views/menu/RTDView.vue")
-        },
-        {
-          path: '/menu/bakery',
-          name: 'bakery',
-          component: () => import("@/views/menu/BakeryView.vue")
-        },
-      ]
+      // redirect: '/menu/smoothie',
+      // children: [
+      //   {
+      //     path: '/menu/smoothie',
+      //     name: 'smoothie',
+      //     component: () => import("@/views/menu/SmoothieView.vue")
+      //   },
+      //   {
+      //     path: '/menu/juice',
+      //     name: 'juice',
+      //     component: () => import("@/views/menu/JuiceView.vue")
+      //   },
+      //   {
+      //     path: '/menu/energybowl',
+      //     name: 'energybowl',
+      //     component: () => import("@/views/menu/EnergyBowl.vue")
+      //   },
+      //   {
+      //     path: '/menu/coffee',
+      //     name: 'coffee',
+      //     component: () => import("@/views/menu/CoffeeView.vue")
+      //   },
+      //   {
+      //     path: '/menu/RTD',
+      //     name: 'RTD',
+      //     component: () => import("@/views/menu/RTDView.vue")
+      //   },
+      //   {
+      //     path: '/menu/bakery',
+      //     name: 'bakery',
+      //     component: () => import("@/views/menu/BakeryView.vue")
+      //   },
+      // ]
     }
   ]
 })
