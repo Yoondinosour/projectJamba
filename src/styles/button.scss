@@ -1,0 +1,19 @@
+button {
+  border: 1px solid transparent;
+  background: #116f57;
+  padding: 12px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 10px;
+  color: #FFF;
+  cursor: pointer;
+  &:hover {
+    border: 1px solid #116f57;
+    background: #FFF;
+    color: #116f57;
+    transition: all .2s ease-in;
+  }
+}
+.btn-campaign {
+
+}
