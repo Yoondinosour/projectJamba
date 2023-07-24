@@ -7,20 +7,20 @@
   </div>
 
   <teleport to="#modal">
-    <Modal :modalParams="modalParams" @closeModal="val => modalParams.isOpened = val" />
+    <Modal :modalParams="store.modalParams" @closeModal="val => store.modalParams.isOpened = val" />
   </teleport>
 
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { useModalStore } from '../stores'
 
-const modalParams = ref(
-  { isOpened: false, title: '', msg: '', modalItem: {}, closing: null }
-);
+const store = useModalStore()
+
 function showModal() {
-  modalParams.value = { isOpened:true, title: '이벤트 알림', msg: '표시할 이벤트가 없습니다', closing: null }
+  store.modalParams = { isOpened:true, title: '이벤트 알림', msg: '표시할 이벤트가 없습니다!!', closing: true }
 }
+
 </script>
 
 <style lang="scss" scoped>
