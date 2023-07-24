@@ -7,22 +7,19 @@
   </div>
 
   <teleport to="#modal">
-    <modalComp :modalParams="modalParams" @closeModal="val => modalParams.isOpened = val">
-      test
-    </modalComp>
+    <Modal :modalParams="modalParams" @closeModal="val => modalParams.isOpened = val" />
   </teleport>
 
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import modalComp from '../modal/CommonModal.vue'
 
 const modalParams = ref(
-  { isOpened: false, title: '', msg: '', modalItem: {} }
+  { isOpened: false, title: '', msg: '', modalItem: {}, closing: null }
 );
 function showModal() {
-  modalParams.value = { isOpened:true, title: '이벤트 알림', msg: '표시할 이벤트가 없습니다'}
+  modalParams.value = { isOpened:true, title: '이벤트 알림', msg: '표시할 이벤트가 없습니다', closing: null }
 }
 </script>
 

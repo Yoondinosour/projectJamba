@@ -22,6 +22,22 @@ const props = defineProps({
 })
 
 const emits = defineEmits(['closeModal'])
+
+
+document.addEventListener("click", function(event) {
+  const modalWrap = document.querySelector('.modal-wrap')
+
+  const targetElement = event.target;
+  const isTarget = targetElement.classList.contains('modal-content') || targetElement.closest('.modal-content');
+
+    if(isTarget) {
+      return;
+    }
+
+    if(props.modalParams.closing && event.target === modalWrap) {
+      props.modalParams.isOpened = false
+    }
+})
 </script>
 
 <style lang="scss" scoped>
