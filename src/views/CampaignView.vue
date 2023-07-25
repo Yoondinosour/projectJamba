@@ -2,8 +2,6 @@
   <div class="container">
     <h2>무슨 이벤트를 하는지 보고 싶다면??</h2>
     <button @click="showModal" class="btn-campaign">이벤트 살펴보기</button>
-
-    
   </div>
 
   <teleport to="#modal">
